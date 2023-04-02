@@ -3,10 +3,11 @@ const mongoose = require('mongoose');
 const postSchema = new mongoose.Schema({
     title:{
         type: String,
-        require: [true, "Content must have a name"],
+        required: true,
     } ,
     category: {
-        type: String
+        type: String,
+        required:true,
     },
     content: String,
     image: String,

@@ -21,6 +21,7 @@
 .ft {
     display: block;
     background-color: rgb(216, 220, 220);
+    max-height: 140px;
 }
 
 .title {

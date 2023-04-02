@@ -1,24 +1,34 @@
 <template>
   <v-container>
-    <v-alert border="left" close-text="Close Alert" color="green accent-4" dark dismissible v-if="this.$route.params.message">
+    <v-alert border="left" close-text="Close Alert" color="green accent-4" dark dismissible
+      v-if="this.$route.params.message">
       {{ this.$route.params.message }}
     </v-alert>
     <v-row no-gutters>
       <v-col sm="4" class="pa-3" v-for="post in posts" :key="post._id">
-        <v-card class="pa-1" :to="{name: 'post', params:{id: post._id}}">
-          <v-img height="250" :src="`http://localhost:5000/uploads/${post.image}`"></v-img>
-          <!-- <v-img height="250" :src="`/${post.image}`"></v-img> -->
-          <v-btn class="ml-4 mt-3 btn" small outlined color="#9afee2" font="Courier New">
-            {{ post.category }}
-          </v-btn>
-          
-          <v-card-title class="headline">
-            {{ post.title }}
-          </v-card-title>
-          <v-card-text class="py-0">
-            <p>{{ post.content.substring(0, 100)+"..." }}</p>
-          </v-card-text>
-        </v-card>
+        <router-link :to="{ name: 'post', params: { id: '6428d7958572fb13260adf21' } }">
+          <v-hover v-slot="{ isHovering, props }">
+            <v-card class="pa-1 mx-auto" max-width="344" v-bind="props">
+              {{ post._id }}
+              <v-img height="250" :src="`http://localhost:5000/uploads/${post.image}`"></v-img>
+              <!-- <v-img height="250" :src="`/${post.image}`"></v-img> -->
+              <v-btn class="ml-4 mt-3 btn" small outlined color="#9afee2" font="Courier New">
+                {{ post.category }}
+              </v-btn>
+
+              <v-card-title class="headline">
+                {{ post.title }}
+              </v-card-title>
+              <v-card-text class="py-0">
+                <p>{{ post.content.substring(0, 100) + "..." }}</p>
+              </v-card-text>
+
+              <v-overlay :model-value="isHovering" contained scrim="#036358" class="align-center justify-center">
+                <v-btn variant="flat">xem chi tiết</v-btn>
+              </v-overlay>
+            </v-card>
+          </v-hover>
+        </router-link>
       </v-col>
     </v-row>
   </v-container>
@@ -26,18 +36,19 @@
 
 <script>
 import API from '../api';
+import { RouterLink } from 'vue-router';
 // import { defineComponent } from 'vue';
-
 // Components
 //defineCom~~
-export default({
+export default ({
   name: 'Home',
-  data(){
+  data() {
     return {
       posts: [],
+      overlay: false,
     };
   },
-  async created(){
+  async mounted() {
     this.posts = await API.getAllPost();
   },
 });
@@ -47,12 +58,12 @@ export default({
 <style>
 @import url(../assets/main.css);
 
-.v-btn__content{
+.v-btn__content {
   font-family: 'Courier New', Courier, monospace;
   font-weight: 1000;
 }
-.v-card-text{
+
+.v-card-text {
   font-weight: 200;
 }
-
 </style>

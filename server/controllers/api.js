@@ -14,54 +14,56 @@ module.exports = class API{
     }
     //fetch post by ID
     static async fetchPostByID(req, res){
-        const id = req.params._id;
+        const id = req.params.id;
+        console.log(id)
         // const id = req.params.id;
         try {
             const post = await Post.findById(id);
-            res.status(200).json(post);
+            res.send(post);
         } catch (err) {
-            res.status(404).json({message: err.message});
+            res.send({message: err.message});
             
         }
     }
 
-    //create a post
-    // static async createPost(req, res){
-    //     const {title, category, content, image} = req.body;
-    //     const filename = req.file.filename;
-    //     console.log(filename);
-    //     try {
-    //         // await Post.create(post);
-            
-    //         const newPost = new Post({
-    //             title : title,
-    //             category: category,
-    //             content: content,
-    //             image: filename
-    //         });
-    //         await newPost.save();
-    //         res.status(201).json({
-    //             message: 'Post created successfully!!',
-    //             newPost
-    //         });
-    //     } catch (err) {
-    //         res.status(400).json({message: err.message});
-    //     }
-    
-    // }
+    // create a post
     static async createPost(req, res){
-        const post = req.body;
-        const imagename = req.file.filename;
-        console.log(imagename);
-        console.log(req.body.category)
-        post.image = imagename;
-        try{
-            await Post.create(post);
-            res.status(201).json({message: "Post created succesfully!"});
-        }catch (err){
-            res.status(400).json({message:err.message});
+        const {title, category, content, image} = req.body;
+        const filename = req.file.filename;
+        console.log(filename);
+        try {
+            // await Post.create(post);
+            
+            const newPost = new Post({
+                title : title,
+                category: category,
+                content: content,
+                image: filename
+            });
+            await newPost.save();
+            res.status(201).json({
+                message: 'Post created successfully!!',
+                newPost
+            });
+        } catch (err) {
+            res.status(400).json({message: err.message});
         }
+    
     }
+    // static async createPost(req, res){
+    //     const post = req.body;
+    //     const imagename = req.file.filename;
+    //     console.log(imagename);
+    //     // console.log(req.body.category)
+    //     post.image = imagename;
+    //     // console.log(post)
+    //     try{
+    //         await Post.create(post);
+    //         res.status(201).json({message: "Post created succesfully!"});
+    //     }catch (err){
+    //         res.status(400).json({message:err.message});
+    //     }
+    // }
 
     //update a post
     static async updatePost(req, res){

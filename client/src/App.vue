@@ -6,7 +6,6 @@
       </v-list-item>
       <v-divider></v-divider>
       <v-list density="compact">
-        <!-- <v-list-item-group> -->
           <v-list-item
             v-for="(item, i) in items"
             :key="i"
@@ -21,7 +20,6 @@
 
             <v-list-item-title v-text="item.title"></v-list-item-title>
           </v-list-item>
-        <!-- </v-list-item-group> -->
         
       </v-list>
     </v-navigation-drawer>
@@ -52,7 +50,8 @@ import AppFooter from "../src/components/AppFooter.vue"
     data: () => ({ 
       drawer: null,
       items: [
-        { title: 'Home', icon: 'mdi-home', link:"/" },
+        { title: 'Trang Chủ', icon: 'mdi-home', link:"/"},
+        { title: 'Home', icon: 'mdi-home', link:"/item" },
         { title: 'Add Post', icon: 'mdi-note-plus', link:"/add-post" },
         { title: 'About', icon: 'mdi-help-box', link:"/about" },
       ],
@@ -65,7 +64,7 @@ import AppFooter from "../src/components/AppFooter.vue"
 
 
 .v-container{
-  background-color: rgb(249, 195, 130);
+  background-color: #1565C0;
   max-width: 1280px;
 }
 .v-list-item__overlay{
@@ -74,7 +73,5 @@ import AppFooter from "../src/components/AppFooter.vue"
 .v-list-item-title{
   font-weight: 1000;
 }
-
-
 
 </style>

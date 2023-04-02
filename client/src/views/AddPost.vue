@@ -15,7 +15,7 @@
                             :rules="rules"></v-textarea>
                         <v-file-input @change="selectFile" :rules="rules" show-size counter multiple
                             label="Select Image"></v-file-input>
-                        <v-btn type="submit" class="mt-3" color="primary">Add Post</v-btn>
+                        <v-btn type="submit" class="mt-3" color="#9afee2">Add Post</v-btn>
                     </v-form>
                 </v-card>
             </v-col>

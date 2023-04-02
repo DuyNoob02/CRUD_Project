@@ -42,10 +42,10 @@ export default {
         };
     },
 
-    async created(){
-        const response = await API.getPostByID(post.id);
-        console.log(response);
-        this.post = response;
+     mounted(){
+        // const response =  API.getPostByID(this.$route.params.id);
+        console.log(this.$route);
+        // this.post = response;
     }
 }
 </script>
