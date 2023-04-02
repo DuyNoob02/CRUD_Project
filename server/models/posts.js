@@ -5,7 +5,9 @@ const postSchema = new mongoose.Schema({
         type: String,
         require: [true, "Content must have a name"],
     } ,
-    category: String,
+    category: {
+        type: String
+    },
     content: String,
     image: String,
     created: {

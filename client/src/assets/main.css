@@ -1,0 +1,16 @@
+/* body{
+    background-color: rgb(189, 108, 8);
+} */
+
+/* #app{
+    background-color: rgb(189, 108, 8);
+} */
+*{
+    font-family: 'Courier New', Courier, monospace !important;
+    font-weight: 1000;
+    /* background-color: rgb(249, 195, 130); */
+}
+
+v-btn{
+    font-family: 'Courier New', Courier, monospace !important;
+}

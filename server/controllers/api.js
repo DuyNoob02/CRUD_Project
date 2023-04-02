@@ -14,8 +14,8 @@ module.exports = class API{
     }
     //fetch post by ID
     static async fetchPostByID(req, res){
-        // const id = req.params._id;
-        const id = req.params.id;
+        const id = req.params._id;
+        // const id = req.params.id;
         try {
             const post = await Post.findById(id);
             res.status(200).json(post);
@@ -53,6 +53,7 @@ module.exports = class API{
         const post = req.body;
         const imagename = req.file.filename;
         console.log(imagename);
+        console.log(req.body.category)
         post.image = imagename;
         try{
             await Post.create(post);

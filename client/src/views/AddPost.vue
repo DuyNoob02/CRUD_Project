@@ -53,15 +53,23 @@ export default {
             console.log(formData);
             if (this.$refs.form.validate()) {
                 const response = await API.addPost(formData)
-                var w = window.open('', '', 'width=100,height=100')
-                w.document.write('ok')
-                w.focus()
-                setTimeout(() => {
-                    w.close()
-                }, 2000)
-                this.$router.push({ name: 'home' });
+                // var w = window.open('', '', 'width=100,height=100')
+                // w.document.write('ok')
+                // w.focus()
+                // setTimeout(() => {
+                //     w.close()
+                // }, 2000)
+                this.$router.push({ name: 'home'});
             }
         }
     }
 }
 </script>
+
+<style>
+.v-card-title{
+    font-size: 20px;
+    font-weight: 1000;
+}
+
+</style>

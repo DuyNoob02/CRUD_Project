@@ -14,7 +14,11 @@ export default class API{
     }
 
     static async addPost(post){
-        const res = await axios.post(url, post);
+        const res = await axios.post(url, post,{
+            headers:{
+                "Content-Type":'multipart/form-data'
+            }
+        });
         return res.data;
     }
 

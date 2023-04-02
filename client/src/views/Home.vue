@@ -7,9 +7,11 @@
       <v-col sm="4" class="pa-3" v-for="post in posts" :key="post._id">
         <v-card class="pa-1" :to="{name: 'post', params:{id: post._id}}">
           <v-img height="250" :src="`http://localhost:5000/uploads/${post.image}`"></v-img>
-          <v-btn class="ml-4 mt-3" small outlined color="indigo">
+          <!-- <v-img height="250" :src="`/${post.image}`"></v-img> -->
+          <v-btn class="ml-4 mt-3 btn" small outlined color="#9afee2" font="Courier New">
             {{ post.category }}
           </v-btn>
+          
           <v-card-title class="headline">
             {{ post.title }}
           </v-card-title>
@@ -29,7 +31,7 @@ import API from '../api';
 // Components
 //defineCom~~
 export default({
-  // name: 'Home',
+  name: 'Home',
   data(){
     return {
       posts: [],
@@ -40,3 +42,17 @@ export default({
   },
 });
 </script>
+
+
+<style>
+@import url(../assets/main.css);
+
+.v-btn__content{
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 1000;
+}
+.v-card-text{
+  font-weight: 200;
+}
+
+</style>

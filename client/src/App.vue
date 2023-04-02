@@ -2,12 +2,7 @@
   <v-app id="inspire">
     <v-navigation-drawer v-model="drawer" app>
       <v-list-item>
-        <!-- <v-list-item-content> -->
-          <v-list-item-title>
-            NKD
-          </v-list-item-title>
-          <v-list-item-subtitle>MEVN Project App</v-list-item-subtitle>
-        <!-- </v-list-item-content> -->
+          <v-img src="../public/logo.png" width="100px" ></v-img>
       </v-list-item>
       <v-divider></v-divider>
       <v-list density="compact">
@@ -18,7 +13,7 @@
             :to="item.link"
             link
             :value="item"
-            active-color="primary"
+            active-color="#34331c"
             >
             <template v-slot:prepend>
               <v-icon :icon="item.icon"></v-icon>
@@ -40,11 +35,20 @@
     <v-main>
       <router-view></router-view>
     </v-main>
+
+    <AppFooter/>
+    
   </v-app>
+  
 </template>
 
 <script>
+import AppFooter from "../src/components/AppFooter.vue"
   export default {
+    components:{
+      AppFooter,
+    },
+
     data: () => ({ 
       drawer: null,
       items: [
@@ -55,3 +59,22 @@
     }),
   }
 </script>
+
+<style>
+@import url(./assets/main.css);
+
+
+.v-container{
+  background-color: rgb(249, 195, 130);
+  max-width: 1280px;
+}
+.v-list-item__overlay{
+  display: none;
+}
+.v-list-item-title{
+  font-weight: 1000;
+}
+
+
+
+</style>
