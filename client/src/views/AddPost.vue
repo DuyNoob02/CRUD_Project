@@ -3,7 +3,7 @@
         <v-row no-gutters>
             <v-col sm="10" class="mx-auto">
                 <v-card class="pa-5">
-                    <v-card-title>Add New Post</v-card-title>
+                    <v-card-title>ADD NEW POST</v-card-title>
                     <v-divider></v-divider>
                     <v-form ref="form" @submit.prevent="submitForm" class="pa-5" enctype="multipart/form-data">
                         <v-text-field label="Title" v-model="post.title" prepend-icon="mdi-note"
@@ -15,7 +15,7 @@
                             :rules="rules"></v-textarea>
                         <v-file-input @change="selectFile" :rules="rules" show-size counter multiple
                             label="Select Image"></v-file-input>
-                        <v-btn type="submit" class="mt-3" color="#9afee2">Add Post</v-btn>
+                        <v-btn type="submit" class="submit_btn" color="#9afee2">Add Post</v-btn>
                     </v-form>
                 </v-card>
             </v-col>
@@ -25,6 +25,7 @@
 
 <script>
 import API from '../api'
+import Home from '../views/Home.vue'
 export default {
     name: 'add-post',
     data() {
@@ -59,7 +60,7 @@ export default {
                 // setTimeout(() => {
                 //     w.close()
                 // }, 2000)
-                this.$router.push({ name: 'home'});
+                this.$router.push({ name:Home});
             }
         }
     }
@@ -71,5 +72,13 @@ export default {
     font-size: 20px;
     font-weight: 1000;
 }
-
+/* .submit_btn{
+    display: flex;
+    justify-content: center;
+} */
+.v-btn{
+    /* display: flex;
+    justify-content: center; */
+    margin-left: 45%
+}
 </style>

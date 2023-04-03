@@ -7,7 +7,8 @@ const postSchema = new mongoose.Schema({
     } ,
     category: {
         type: String,
-        required:true,
+        // required:true,
+        unique: false
     },
     content: String,
     image: String,

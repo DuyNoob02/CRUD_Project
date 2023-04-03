@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import TrangChu from '../views/TrangChu.vue'
 import Home from '../views/Home.vue'
 import AddPost from '../views/AddPost.vue'
 import Post from '../views/Post.vue';
@@ -10,12 +9,7 @@ const routes = [
 
   {
     path: '/',
-    name: 'TrangChu',
-    component: TrangChu
-  },
-  {
-    path: '/item',
-    name: 'home',
+    name: 'Home',
     component: Home
   },
   {

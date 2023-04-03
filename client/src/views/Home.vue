@@ -6,10 +6,10 @@
     </v-alert>
     <v-row no-gutters>
       <v-col sm="4" class="pa-3" v-for="post in posts" :key="post._id">
-        <router-link :to="{ name: 'post', params: { id: '6428d7958572fb13260adf21' } }">
+        <router-link :to="{ name: 'post', params: {id: post._id} }">
           <v-hover v-slot="{ isHovering, props }">
-            <v-card class="pa-1 mx-auto" max-width="344" v-bind="props">
-              {{ post._id }}
+            <v-card class="pa-1 " max-width="344" max-height="414" v-bind="props">
+              <!-- {{ post._id }} -->
               <v-img height="250" :src="`http://localhost:5000/uploads/${post.image}`"></v-img>
               <!-- <v-img height="250" :src="`/${post.image}`"></v-img> -->
               <v-btn class="ml-4 mt-3 btn" small outlined color="#9afee2" font="Courier New">
@@ -20,7 +20,7 @@
                 {{ post.title }}
               </v-card-title>
               <v-card-text class="py-0">
-                <p>{{ post.content.substring(0, 100) + "..." }}</p>
+                <p>{{ post.content.substring(0, 80) + "..." }}</p>
               </v-card-text>
 
               <v-overlay :model-value="isHovering" contained scrim="#036358" class="align-center justify-center">
@@ -41,7 +41,6 @@ import { RouterLink } from 'vue-router';
 // Components
 //defineCom~~
 export default ({
-  name: 'Home',
   data() {
     return {
       posts: [],
@@ -58,6 +57,22 @@ export default ({
 <style>
 @import url(../assets/main.css);
 
+/* 
+.v-img__img--contain {
+    -o-object-fit: contain;
+    object-fit: contain;
+    margin-left: 28px;
+} */
+
+.v-img__img--contain {
+    -o-object-fit: contain;
+    object-fit: contain;
+    margin-left: 30px;
+}
+
+.v-row.v-row--no-gutters {
+    margin-left: 18px;
+}
 .v-btn__content {
   font-family: 'Courier New', Courier, monospace;
   font-weight: 1000;
