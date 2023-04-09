@@ -2,25 +2,22 @@
     <v-container>
         <v-row no-gutters>
             <v-col sm="10" class="pa-4" mx-auto>
-                <v-card class="pa-2">
-                    <v-img :src="`http://localhost:5000/uploads/${post.image}`"></v-img>
-                    <v-card-actions class="pb-0">
-                        <v-row class="mt-1 mx-1">
-                            <v-col sm="2">
-                                <v-btn small outlined color="primary">{{ post.category }}</v-btn>
-                            </v-col>
-                            <v-col sm="10" class="d-flex justify-end">
-                                <v-btn color="success" text :to="{name: 'edit-post', params: {id : post._id}}" >Edit</v-btn>
-                                <v-btn color="red" text>Delete</v-btn>
-                                <!-- <div class="buttons">
-                                    <button>Yes</button>
-                                    <button>No</button>
-                                </div> -->
-                            </v-col>
-                        </v-row>
-                    </v-card-actions>
+                <v-card class="pa-2" id="card">
+                    <v-img id="img_post" :src="`http://localhost:5000/uploads/${post.image}`"></v-img>
+                    <div class="card_action">
+                      <div class="action_detail">
+                        <div class="category_info">
+                          <button class="category_btn">{{ post.category }}</button>
+                        </div>
+                        <div class="modify">
+                          <router-link class="edit_action" :to="{name: 'editPost', params: {_id : post._id}}">Edit</router-link>
+                          <button class="delete_action" @click="removePost(post._id)">Delete</button>
+                        </div>
+                      </div>
+                    </div>
                     <v-card-subtitle class="headline">
                         <h3>{{ post.title }}</h3>
+ 
                     </v-card-subtitle>
                     <v-card-text class="grey--text">
                         <p>{{ post.content }}</p>
@@ -35,6 +32,8 @@
 
 <script>
 import API from '../api';
+import EditPost from './EditPost.vue';
+import { RouterLink } from 'vue-router';
 export default {
     data(){
         return{
@@ -43,87 +42,78 @@ export default {
     },
 
      mounted(){
-        // const response =  API.getPostByID(this.$route.params.id);
-        console.log(this.$route);
-        // this.post = response;
+       const response =  API.getPostByID(this.$route.params.id);
+        response.then((data)=>{
+          this.post = data;
+        })
+    },
+    methods: {
+      async removePost(id){
+        const response = await API.deletePost(id)
+        this.$router.push({name: 'Home', params: {message: response.message}})
+      }
     }
 }
 </script>
 
-<!-- <style>
-.buttons {
+<style>
+
+.action_detail{
   display: flex;
-  width: 380px;
-  gap: 10px;
-  --b: 5px;   /* the border thickness */
-  --h: 1.8em; /* the height */
+  justify-content: space-around;
 }
 
-.buttons button {
-  --_c: #88C100;
-  flex: calc(1.25 + var(--_s,0));
-  min-width: 0;
-  font-size: 40px;
-  font-weight: bold;
-  height: var(--h);
-  cursor: pointer;
-  color: var(--_c);
-  border: var(--b) solid var(--_c);
-  background: 
-    conic-gradient(at calc(100% - 1.3*var(--b)) 0,var(--_c) 209deg, #0000 211deg) 
-    border-box;
-  clip-path: polygon(0 0,100% 0,calc(100% - 0.577*var(--h)) 100%,0 100%);
-  padding: 0 calc(0.288*var(--h)) 0 0;
-  margin: 0 calc(-0.288*var(--h)) 0 0;
-  box-sizing: border-box;
-  transition: flex .4s;
+.modify{
+  display: flex;
+  justify-content: space-around;
 }
-.buttons button + button {
-  --_c: #FF003C;
-  flex: calc(.75 + var(--_s,0));
-  background: 
-    conic-gradient(from -90deg at calc(1.3*var(--b)) 100%,var(--_c) 119deg, #0000 121deg) 
-    border-box;
-  clip-path: polygon(calc(0.577*var(--h)) 0,100% 0,100% 100%,0 100%);
-  margin: 0 0 0 calc(-0.288*var(--h));
-  padding: 0 0 0 calc(0.288*var(--h));
+.edit_action{
+  margin: 0 12px;
+  background-color: #52e557;
+  border-radius: 4px;
+  padding: 3px 4px;
+  width: 50px;
 }
-.buttons button:focus-visible {
-  outline-offset: calc(-2*var(--b));
-  outline: calc(var(--b)/2) solid #000;
-  background: none;
-  clip-path: none;
-  margin: 0;
-  padding: 0;
+.edit_action:hover{
+  background-color: #9ffaa2;
 }
-.buttons button:focus-visible + button {
-  background: none;
-  clip-path: none;
-  margin: 0;
-  padding: 0;
+.delete_action{
+  margin: 0 12px;
+  background-color: #fa7d7d;
+  border-radius: 4px;
+  padding: 3px 4px;
 }
-.buttons button:has(+ button:focus-visible) {
-  background: none;
-  clip-path: none;
-  margin: 0;
-  padding: 0;
-}
-button:hover,
-button:active:not(:focus-visible) {
-  --_s: .75;
-}
-button:active {
-  box-shadow: inset 0 0 0 100vmax var(--_c);
-  color: #fff;
+.delete_action:hover{
+  background-color: #f49e9e;
 }
 
 
-
-body {
-  display: grid;
-  place-content: center;
-  margin: 0;
-  height: 100vh;
-  font-family: system-ui, sans-serif;
+#card{
+  margin-left: 6%;
+  width: 1000px;
 }
-</style> -->
+
+#img_post{
+  margin: 0 170px;
+  width: 700px;
+}
+
+.category_btn{
+  background-color:#9afee2;
+  border-radius: 4px;
+  padding: 3px 4px;
+}
+
+.category_btn:hover{
+  background-color: #b3fee9;
+}
+
+.headline{
+  background-color: #b3fee9;
+  font-size: 28px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+}
+</style>

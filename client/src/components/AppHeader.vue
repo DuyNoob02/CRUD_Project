@@ -15,14 +15,14 @@ export default {
       <div id="header">
         <router-link to="/">
           <div class="logo">
-            <v-img class="logo-image" src="../assets/img/logo.png" alt=""></v-img>
+            <v-img id="logo-image" src="../assets/img/logo.png" alt=""></v-img>
           </div>
-          <p class="logo-title">Universe</p>
+          <!-- <p class="logo-title">Universe</p> -->
         </router-link>
   
         <div class="right-side">
           <ul id="nav" class="list">
-            <router-link class="addpost-area" to="/add-post">ADD POST</router-link>
+            <router-link style="color:white" class="addpost-area" to="/add-post">ADD POST</router-link>
             <li>ABOUT</li>
           </ul>
         </div>
@@ -57,7 +57,7 @@ export default {
 
 #header {
   height: 100px;
-  background-color: aquamarine;
+  background-color: rgb(12, 14, 13);
   position: fixed;
   display: flex;
   top: 0;
@@ -74,48 +74,42 @@ div {
 
 a {
   text-decoration: none;
+  width: 110px;
+  /* overflow: hidden; */
+  /* display: flex;
+  justify-content: center; */
 }
+
 
 .logo {
-  width: 82px;
-  height: 82px;
-  margin-left: calc(100% - 90%);
-  margin-right: 10px;
   display: flex;
   justify-content: center;
-}
-
-.logo-image{
-  display: flex;
-  margin-left: -50px;
+  align-items: center;
 }
 
 
-/* 
-.logo-img{
-  width: 100px;
-  height: 100px;
-} */
+#logo-image{
+  overflow: unset !important;
+  /* margin-top: 15px; */
+transform: scale(0.8);
+}
+
 .v-img__img {
   width: 83%;
-
 }
 
-.logo-title {
-  display: flex;
-  margin-left: calc(100% - 90.3%);
-  margin-top: -7px;
-}
 
 .right-side {
   position: relative;
   display: flex;
   justify-content: space-around;
+  color: white;
 }
 
 #nav {
   list-style: none;
   display: flex;
+
 }
 
 ul li{
@@ -132,9 +126,11 @@ ul li{
 .addpost-area::after{
   display: inline-block;
   content: "";
-  background-color: black;
+  /* background-color: black; */
   width: 1px;
   height: 12px;
   margin-left: 20px;
+  color: white;
+  z-index: 1;
 }
 </style>

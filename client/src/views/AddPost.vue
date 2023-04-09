@@ -60,7 +60,7 @@ export default {
                 // setTimeout(() => {
                 //     w.close()
                 // }, 2000)
-                this.$router.push({ name:Home});
+                await this.$router.push('/');
             }
         }
     }

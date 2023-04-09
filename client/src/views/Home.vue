@@ -7,11 +7,8 @@
     <v-row no-gutters>
       <v-col sm="4" class="pa-3" v-for="post in posts" :key="post._id">
         <router-link :to="{ name: 'post', params: {id: post._id} }">
-          <v-hover v-slot="{ isHovering, props }">
-            <v-card class="pa-1 " max-width="344" max-height="414" v-bind="props">
-              <!-- {{ post._id }} -->
+            <v-card class="pa-1 " max-width="344" max-height="450" v-bind="props">
               <v-img height="250" :src="`http://localhost:5000/uploads/${post.image}`"></v-img>
-              <!-- <v-img height="250" :src="`/${post.image}`"></v-img> -->
               <v-btn class="ml-4 mt-3 btn" small outlined color="#9afee2" font="Courier New">
                 {{ post.category }}
               </v-btn>
@@ -27,7 +24,6 @@
                 <v-btn variant="flat">xem chi tiết</v-btn>
               </v-overlay>
             </v-card>
-          </v-hover>
         </router-link>
       </v-col>
     </v-row>
@@ -37,9 +33,6 @@
 <script>
 import API from '../api';
 import { RouterLink } from 'vue-router';
-// import { defineComponent } from 'vue';
-// Components
-//defineCom~~
 export default ({
   data() {
     return {
@@ -67,7 +60,7 @@ export default ({
 .v-img__img--contain {
     -o-object-fit: contain;
     object-fit: contain;
-    margin-left: 30px;
+    margin-left: 29px;
 }
 
 .v-row.v-row--no-gutters {

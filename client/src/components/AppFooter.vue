@@ -41,6 +41,7 @@ a {
     display: flex;
     justify-content: center;
     margin-top: 12px;
+    margin-left: 60px;
 }
 
 .social-detail{
