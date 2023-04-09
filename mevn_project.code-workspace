@@ -2,6 +2,9 @@
 	"folders": [
 		{
 			"path": "."
+		},
+		{
+			"path": "../../../WEB_Coding/Shopee"
 		}
 	],
 	"settings": {

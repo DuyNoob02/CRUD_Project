@@ -54,12 +54,6 @@ export default {
             console.log(formData);
             if (this.$refs.form.validate()) {
                 const response = await API.addPost(formData)
-                // var w = window.open('', '', 'width=100,height=100')
-                // w.document.write('ok')
-                // w.focus()
-                // setTimeout(() => {
-                //     w.close()
-                // }, 2000)
                 await this.$router.push('/');
             }
         }
@@ -72,13 +66,8 @@ export default {
     font-size: 20px;
     font-weight: 1000;
 }
-/* .submit_btn{
-    display: flex;
-    justify-content: center;
-} */
+
 .v-btn{
-    /* display: flex;
-    justify-content: center; */
     margin-left: 45%
 }
 </style>

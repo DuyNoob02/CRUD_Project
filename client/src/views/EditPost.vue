@@ -26,7 +26,6 @@
 
 <script>
 import API from '../api'
-import Home from '../views/Home.vue'
 export default {
     data() {
         return {
@@ -61,12 +60,6 @@ export default {
             console.log(formData);
             if (this.$refs.form.validate()) {
                 const response = await API.updatePost(this.$route.params.id, formData)
-                // var w = window.open('', '', 'width=100,height=100')
-                // w.document.write('ok')
-                // w.focus()
-                // setTimeout(() => {
-                //     w.close()
-                // }, 2000)
                 await this.$router.push('/');
             }
         }
@@ -79,17 +72,12 @@ export default {
     font-size: 20px;
     font-weight: 1000;
 }
-/* .submit_btn{
-    display: flex;
-    justify-content: center;
-} */
+
 #old_image{
     margin-left: 20px !important;
 }
 
 .v-btn{
-    /* display: flex;
-    justify-content: center; */
     margin-left: 40%
 }
 </style>

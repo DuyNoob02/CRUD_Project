@@ -32,7 +32,6 @@
 
 <script>
 import API from '../api';
-import EditPost from './EditPost.vue';
 import { RouterLink } from 'vue-router';
 export default {
     data(){
