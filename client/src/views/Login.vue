@@ -124,6 +124,7 @@ input{
     background-color: aquamarine;
     padding: 5px;
     text-align: centers;
+    border-radius: 3px;
 }
 .login-btn:hover{
     background-color: rgb(15, 236, 162);
