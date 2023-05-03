@@ -65,7 +65,8 @@ export default {
       await this.$router.push('/login')
     },
     async handleAddPost(){
-      if(this.islogged.islogged === false){
+      console.log(this.islogged);
+      if(this.islogged === false){
         await this.$router.push('/login')
       }
       else this.$router.push('/add-post')
