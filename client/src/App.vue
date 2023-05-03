@@ -1,10 +1,10 @@
 <template>
-  <AppHeader/>
   <v-app id="inspire">
-    <v-main>
+    <!-- <AppHeader  /> -->
+    <div >
       <router-view></router-view>
-    </v-main>
-    <AppFooter />
+    </div>
+    <!-- <AppFooter /> -->
   </v-app>
 </template>
 
@@ -12,17 +12,13 @@
 import AppHeader from "../src/components/AppHeader.vue"
 import AppFooter from "../src/components/AppFooter.vue"
 export default {
-  components: {
-    AppFooter,
-    AppHeader
-  },
 }
 </script>
 
 <style>
 @import url(./assets/main.css);
 
-.v-main{
+.v-main {
   margin-bottom: 10px;
 }
 
@@ -39,7 +35,3 @@ export default {
   font-weight: 1000;
 }
 </style>
-
-
-
-
