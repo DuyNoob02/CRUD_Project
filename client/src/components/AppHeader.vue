@@ -1,58 +1,82 @@
-<script>
-import { RouterLink } from "vue-router";
-export default {
-}
-</script>
-
 
 <template>
-    <v-app id="inspire" app>
-      <!-- <v-app-bar app extended>
-  
-        
-              </v-app-bar> -->
-  
-      <div id="header">
-        <router-link to="/">
-          <div class="logo">
-            <v-img id="logo-image" src="../assets/img/logo.png" alt=""></v-img>
-          </div>
-          <!-- <p class="logo-title">Universe</p> -->
-        </router-link>
-  
-        <div class="right-side">
-          <ul id="nav" class="list">
-            <router-link style="color:white" class="addpost-area" to="/add-post">ADD POST</router-link>
-            <li>ABOUT</li>
-          </ul>
+  <v-app id="inspire" app>
+    <div id="header">
+      <router-link to="/">
+        <div class="logo">
+          <v-img id="logo-image" src="../assets/img/logo.png" alt=""></v-img>
         </div>
-  
+      </router-link>
+
+      <div class="right-side">
+        <ul id="nav" class="list">
+          <li @click="handleAddPost" style="color:white" class="addpost-area">ADD POST</li>
+          <li>ABOUT</li>
+        </ul>
+
+        <ul>
+          <li class="userInfo">
+            <p v-if="data">{{ data }} </p>
+
+            <span class="logout-icon" @click="handleLogout" v-if="islogged === true">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1"
+                stroke="currentColor" class="icon">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
+              </svg>
+            </span>
+
+
+          </li>
+        </ul>
       </div>
-  
-  
-      <!-- <v-main>
-                <v-container>
-                  <v-row>
-                    <v-col
-                      v-for="n in 24"
-                      :key="n"
-                      cols="4"
-                    >
-                      <v-card height="200"></v-card>
-                    </v-col>
-                  </v-row>
-                </v-container>
-              </v-main> -->
-    </v-app>
+    </div>
+  </v-app>
 </template>
 
 
+<script>
 
+import { useUserStore } from "../stores/userStore"
+import router from "vue-router"
+export default {
+  data() {
+    return {
+      data: null,
+      islogged: false
+    }
+  },
+  mounted() {
+    const data = JSON.parse(localStorage.getItem("user"))
+    console.log(data);
+    this.data = data.user.username
+    this.islogged = data.islogged
+
+  }
+  ,
+  methods: {
+    async handleLogout() {
+      alert("Bạn muốn đăng xuất")
+      localStorage.setItem('user', JSON.stringify({
+        islogged: false,
+        user: ""
+
+      }))
+      await this.$router.push('/login')
+    },
+    async handleAddPost(){
+      if(this.islogged.islogged === false){
+        await this.$router.push('/login')
+      }
+      else this.$router.push('/add-post')
+    }
+  }
+}
+</script>
 <style>
-
-.v-application__wrap{
-    padding-bottom: 0;
-    min-height: 120px;
+.v-application__wrap {
+  padding-bottom: 0;
+  min-height: 120px;
 }
 
 #header {
@@ -88,10 +112,10 @@ a {
 }
 
 
-#logo-image{
+#logo-image {
   overflow: unset !important;
   /* margin-top: 15px; */
-transform: scale(0.8);
+  transform: scale(0.8);
 }
 
 .v-img__img {
@@ -112,10 +136,11 @@ transform: scale(0.8);
 
 }
 
-ul li{
+ul li {
   margin: 0 20px;
 }
-.list{
+
+.list {
   font-size: 18px;
 }
 
@@ -123,7 +148,7 @@ ul li{
   margin-top: 30px;
 }
 
-.addpost-area::after{
+.addpost-area::after {
   display: inline-block;
   content: "";
   /* background-color: black; */
@@ -133,4 +158,16 @@ ul li{
   color: white;
   z-index: 1;
 }
-</style>
+
+.userInfo {
+  list-style: none;
+  /* display:  inline-block; */
+  display: flex;
+  gap: 10px;
+}
+
+.logout-icon .icon {
+  font-size: 10px;
+  width: 20px;
+  height: 20px;
+}</style>

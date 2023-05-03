@@ -4,32 +4,29 @@ const API = require('../controllers/api')
 const multer = require('multer');
 
 
+
 //set storage
 const storage = multer.diskStorage({
-    destination: function(req, file, cb){
+    destination: function (req, file, cb) {
         cb(null, './uploads');
     },
-    filename: function(req, file, cb){
+    filename: function (req, file, cb) {
         cb(null, file.fieldname + "_" + Date.now() + "_" + file.originalname);
     },
-    // filename: function(req, file, cb){
-    //     cb(null,  "image" + Date.now() + "_" + file.originalname);
-    // },
-    // filename: (req, file, cb) => {
-    //     const ext = file.mimetype.split("/")[1];
-    //     cb(null, `${file.fieldname}-${Date.now()}.${ext}`);
-    // },
 });
 
 const upload = multer({
-    storage : storage,
+    storage: storage,
 }).single("image");
 
 
-router.get('/',  API.fetchAllPost);
-router.get('/:id',  API.fetchPostByID);
-router.post('/',  upload, API.createPost);
+router.get('/', API.fetchAllPost);
+router.get('/:id', API.fetchPostByID);
+router.post('/', upload, API.createPost);
 router.patch('/:id', upload, API.updatePost);
-router.delete('/:id',  API.deletePost);
+router.delete('/:id', API.deletePost);
 
-module.exports  = router;
+
+
+
+module.exports = router;

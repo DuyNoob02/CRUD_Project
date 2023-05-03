@@ -1,19 +1,16 @@
 <template>
+  <AppHeader />
   <v-container>
-    <v-alert border="left" close-text="Close Alert" color="green accent-4" dark dismissible
-      v-if="this.$route.params.message">
-      {{ this.$route.params.message }}
-    </v-alert>
     <v-row no-gutters>
       <v-col sm="4" class="pa-3" v-for="post in posts" :key="post._id">
-        <div >
+        <div>
           <router-link :to="{ name: 'post', params: { id: post._id } }">
-            <v-card class="pa-1 card_component" max-width="344" max-height="450" v-bind="props">
+            <v-card class="pa-1 card_component" max-width="344" min-height="450" max-height="450" v-bind="props">
+              <!-- <v-img height="250" :src="`http://localhost:5000/uploads/${post.image}`"></v-img> -->
               <v-img height="250" :src="`http://localhost:5000/uploads/${post.image}`"></v-img>
               <v-btn class="ml-4 mt-3 btn" small outlined color="#9afee2" font="Courier New">
                 {{ post.category }}
               </v-btn>
-
               <v-card-title class="headline">
                 {{ post.title }}
               </v-card-title>
@@ -31,12 +28,17 @@
       </v-col>
     </v-row>
   </v-container>
+  <AppFooter />
 </template>
 
 <script>
-import API from '../api';
+import API from '../service/api';
 import { RouterLink } from 'vue-router';
+import AppHeader from '@/components/AppHeader.vue';
+import AppFooter from '@/components/AppFooter.vue';
+import axios from 'axios';
 export default ({
+  components: { AppHeader, AppFooter },
   data() {
     return {
       posts: [],
@@ -44,8 +46,11 @@ export default ({
     };
   },
   async mounted() {
-    this.posts = await API.getAllPost();
+    // this.posts = await API.getAllPost();
+    const result = await axios.get("http://localhost:5000/api/post/") 
+    this.posts = result.data;
   },
+
 });
 </script>
 
@@ -54,10 +59,11 @@ export default ({
 @import url(../assets/main.css);
 
 
-.card_component{
+.card_component {
   transition: transform linear 0.1s;
 }
-.card_component:hover{
+
+.card_component:hover {
   /* transform: translateY(-3px); */
   transform: translate(6px)
 }

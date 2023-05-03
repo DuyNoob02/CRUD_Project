@@ -9,7 +9,7 @@ export default class API{
     }
 
     static async getPostByID(id){
-        const res = await axios.get(`${url}/${id}`);
+        const res = await axios.get(`http://localhost:5000/api/post/${id}`);
         return res.data;
     }
 

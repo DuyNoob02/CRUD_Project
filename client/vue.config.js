@@ -8,7 +8,12 @@ module.exports = defineConfig({
         target: "http://localhost:5000",
         changeOrigin: true,
       },
-    },
+    }
+    //   '/user':{
+    //     target: "http://localhost:5000",
+    //     changeOrigin: true,
+    //   }
+    // },
   },
   pluginOptions: {
     vuetify: {

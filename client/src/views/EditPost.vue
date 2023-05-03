@@ -1,4 +1,5 @@
 <template>
+    <AppHeader/>
     <v-container>
         <v-row no-gutters>
             <v-col sm="10" class="mx-auto">
@@ -22,11 +23,18 @@
             </v-col>
         </v-row>
     </v-container>
+    <AppFooter/>
 </template>
 
 <script>
-import API from '../api'
+import API from '../service/api'
+import AppHeader from '@/components/AppHeader.vue';
+import AppFooter from '@/components/AppFooter.vue'
 export default {
+    components: {
+        AppHeader,
+        AppFooter
+    },
     data() {
         return {
             rules: [(value) => !!value || "This field is required!"],

@@ -1,4 +1,5 @@
 <template>
+    <AppHeader/>
     <v-container>
         <v-row no-gutters>
             <v-col sm="10" class="mx-auto">
@@ -21,13 +22,20 @@
             </v-col>
         </v-row>
     </v-container>
+    <AppFooter/>
 </template>
 
 <script>
-import API from '../api'
-import Home from '../views/Home.vue'
+import API from '../service/api'
+// import Home from '../views/Home.vue'
+import AppHeader from '@/components/AppHeader.vue';
+import AppFooter from '@/components/AppFooter.vue';
+import axios from 'axios';
 export default {
-    name: 'add-post',
+    components: {
+        AppHeader,
+        AppFooter
+    },
     data() {
         return {
             rules: [(value) => !!value || "This field is required!"],
@@ -53,7 +61,8 @@ export default {
             formData.append('content', this.post.content);
             console.log(formData);
             if (this.$refs.form.validate()) {
-                const response = await API.addPost(formData)
+                // const response = await API.addPost(formData)
+                const response = await axios.post('http://localhost:5000/api/post',formData)
                 await this.$router.push('/');
             }
         }
@@ -62,12 +71,12 @@ export default {
 </script>
 
 <style>
-.v-card-title{
+.v-card-title {
     font-size: 20px;
     font-weight: 1000;
 }
 
-.v-btn{
+.v-btn {
     margin-left: 45%
 }
 </style>
